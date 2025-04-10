@@ -19,7 +19,7 @@ def compute_msp(model, loader, device):
 def evaluate_ood():
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = PretrainedClassifier().to(device)
-    model.load_state_dict(torch.load('cifar10_classifier.pth'))
+    model.load_state_dict(torch.load('cifar10_classifier.pth', map_location=device))
     loaders = get_loaders(batch_size=256)
 
     # 计算MSP分数
